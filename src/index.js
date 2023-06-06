@@ -32,5 +32,15 @@ app.use('/api', apiRoutes);
 app.listen(ServerConfig.PORT, async () => {
     console.log(`Successfully started the server on PORT : ${ServerConfig.PORT}`);
     await connectQueue();
-    console.log("queue is up")
+    console.log("queue is up");
+     const response=await mailsender.sendMail({
+        from: ServerConfig.GMAIL_EMAIL,
+        to:'amarjyotipatra511@gmail.com',
+        cc:'p.amarjyoti@gmail.com',
+        bcc:'amarjyotipatrabls@gmail.com',
+        subject:'Mail from personal project of Flight service',
+        text:'1st mail sent using smtp and nodemailer for trial',
+        html:'<h1>Hello World!!!</h1>'
+    })
+    console.log(response);
 });
